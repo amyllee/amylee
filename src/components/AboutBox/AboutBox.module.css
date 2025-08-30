@@ -1,0 +1,29 @@
+.aboutBox {
+    max-width: 750px;
+    margin: 30px auto; /* center horizontally, put below navbar */
+    background-color: #f8efda;
+    border: 2px solid #7a8450;
+    border-radius: 12px; /* curved edges?? */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0 0 20px 0; /* spacing between text and border */
+}
+
+/* Title Bar */
+.header {
+    display: flex; /* puts System Message and X in same row */
+    /* justify-content: center;*/
+    align-items: center;
+    background-color: #7a8450;
+    color: #f8efda;
+    padding: 12px 16px;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0; /* rounded border */
+}
+
+.aboutBox p {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #000000;
+    padding: 20px;
+}

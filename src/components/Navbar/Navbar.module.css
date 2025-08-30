@@ -1,0 +1,36 @@
+.navbar {
+    width: 100%;
+    height: 70px;
+    display: flex; /* lay items out in navbar row */
+    align-items: center; /* center items vertically */
+    background-color: #7a8450;
+    padding: 0 20px; /* puts space on left/right */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* shadow below navbar */
+    position: fixed; /* keep at top while scrolling - might remove??!?! */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    cursor: pointer; /* bring you back to top when clicked */
+}
+
+.navLinks {
+    display: flex; /* lay items in navbar row */
+    gap: 20px;
+    list-style: none; /* get rid of bullet points */
+    margin-left: 40px; /* space btwn logo and About button */
+    padding: 0;
+}
+
+.navLinks li a {
+    color: #f8efda;
+    transition: color 0.2s ease;
+}
+
+.navLinks li a:hover {
+    color: #eee9bf;
+}
