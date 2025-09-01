@@ -1,0 +1,9 @@
+.card {
+    min-width: 300px;
+    max-width: 300px;
+    background-color: #f8efda;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    overflow: hidden;
+    flex-shrink: 0; /* stop shrinking in */
+}
