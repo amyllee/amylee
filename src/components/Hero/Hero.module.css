@@ -13,17 +13,11 @@
     width: 220px;
     height: 220px;
     border-radius: 50%; /* circle shape */
-    background-image: url("../src/assets/headshot.jpg");
     background-size: cover;
     background-position: center;
     transition: background-image 0.4s ease-in-out;
     box-shadow: 0 6px 14px rgba(0,0,0,0.2);
     cursor: pointer;
-}
-
-/* changed to illustrated ver on hover */
-.headshot:hover {
-    background-image: url("../src/assets/illustrated.png");
 }
 
 .name {

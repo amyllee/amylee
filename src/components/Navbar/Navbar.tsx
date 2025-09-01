@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./Navbar.module.css";
+import logo from "../assets/logo.png";
 
 const Navbar: React.FC = () => {
     return (
         <nav className={styles.navbar}>
             <div className={styles.logo}>
-                <img src="../src/assets/logo.png" alt="Amy Logo" />
+                <img src={logo} alt="Amy Logo" />
             </div>
             <ul className={styles.navLinks}>
                 <li><a href="#about">About</a></li>

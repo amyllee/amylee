@@ -3,6 +3,7 @@
     height: 70px;
     display: flex; /* lay items out in navbar row */
     align-items: center; /* center items vertically */
+    justify-content: space-between;
     background-color: #7a8450;
     padding: 0 20px; /* puts space on left/right */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* shadow below navbar */
