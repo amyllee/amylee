@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Hero.module.css";
-import headshot from "../assets/headshot.jpg";
-import illustrated from "../assets/illustrated.png"
+import headshot from "../src/assets/headshot.jpg";
+import illustrated from "../src/assets/illustrated.png"
 
 const Hero: React.FC = () => {
     const [hover, setHover] = useState(false);
