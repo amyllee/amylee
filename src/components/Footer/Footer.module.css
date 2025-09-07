@@ -1,0 +1,40 @@
+.footer {
+    background-color: #78a2d2;
+    padding: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.contact {
+    margin-left: 40px;
+}
+
+.contact h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+    color: #f8efda;
+}
+
+.contact p {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #f8efda;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.socials {
+    display: flex;
+    gap: 8px;
+}
+.socialIcon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+.socialIcon:hover {
+    transform: scale(1.1);
+}

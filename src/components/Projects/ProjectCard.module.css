@@ -1,9 +1,41 @@
 .card {
-    min-width: 300px;
-    max-width: 300px;
+    min-width: 200px;
+    max-width: 250px;
     background-color: #f8efda;
     border-radius: 12px;
     box-shadow: 0 6px 14px rgba(0,0,0,0.2);
     overflow: hidden;
     flex-shrink: 0; /* stop shrinking in */
+    padding: 1rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+.image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin: 8px;
+}
+
+.card p {
+    font-size: 1rem;
+    margin: 8px;
+}
+
+/* Carousel card image */
+.image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }

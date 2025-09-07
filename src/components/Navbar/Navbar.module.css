@@ -3,7 +3,7 @@
     height: 70px;
     display: flex; /* lay items out in navbar row */
     align-items: center; /* center items vertically */
-    background-color: #7a8450;
+    background-color: #78a2d2;
     padding: 0 20px; /* puts space on left/right */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* shadow below navbar */
     position: fixed; /* keep at top while scrolling - might remove??!?! */
@@ -24,6 +24,7 @@
     list-style: none; /* get rid of bullet points */
     margin-left: 40px; /* space btwn logo and About button */
     padding: 0;
+    font-family: 'Playfair Display';
 }
 
 .navLinks li a {
