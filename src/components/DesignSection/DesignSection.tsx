@@ -24,7 +24,6 @@ import frame4 from "../../assets/frame4.png";
 import frame5 from "../../assets/frame5.png";
 
 import Modal from "../Modal/Modal";
-import modalStyles from "../Modal/Modal.module.css";
 
 type DesignWork = {
   // what shows in the grid
