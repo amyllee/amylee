@@ -40,4 +40,6 @@ html, body {
   width: 100%;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  background-color: #ffffff;
+  color: #000000;
 }

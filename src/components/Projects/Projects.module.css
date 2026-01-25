@@ -91,6 +91,25 @@
 
 .currently-button {
   margin-top: 12px;
+
+  /* force your colors */
+  background-color: #78a2d2;
+  color: #f8efda;
+
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 999px;
+  padding: 10px 14px;
+
+  cursor: pointer;
+  font-family: "IBM Plex Mono", monospace; /* or EB Garamond if you prefer */
+  font-size: 0.95rem;
+
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+
+  /* prevents weird browser theme rendering */
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .cards {
