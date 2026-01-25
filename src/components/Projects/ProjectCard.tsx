@@ -1,20 +1,36 @@
 import React from "react";
 import styles from "./ProjectCard.module.css";
 
-interface ProjectCardProps {
-    title: string;
-    image: string;
-    description: string;
-}
+export type Project = {
+  title: string;
+  image: string;
+  description: string;
+  category: string;
+  bullets?: string[];
+  tech?: string[];
+  links?: { label: string; url: string }[];
+};
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, image, description }) => {
-    return (
-        <div className={styles.card}>
-            <img src={image} alt={title} className={styles.image} />
-            <h3>{title}</h3>
-            <p>{description}</p>
-        </div>
-    );
+type ProjectCardProps = Project & {
+  onOpen: (project: Project) => void;
+};
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ onOpen, ...project }) => {
+  return (
+    <button
+      type="button"
+      className={styles.card}
+      onClick={() => onOpen(project)}
+      aria-label={`Open details for ${project.title}`}
+    >
+      <img src={project.image} alt={project.title} className={styles.image} />
+
+      <div className={styles.content}>
+        <h3 className={styles.title}>{project.title}</h3>
+        <p className={styles.desc}>{project.description}</p>
+      </div>
+    </button>
+  );
 };
 
 export default ProjectCard;

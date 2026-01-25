@@ -1,28 +1,160 @@
 .hero {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 200px 0 0 0;
-    text-align: center;
+  width: 100%;
+  padding: 140px 16px 40px;
+  text-align: center;
 }
 
-/* Headshot Icon Box */
-.headshot {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%; /* circle shape */
-    background-size: cover;
-    background-position: center;
-    transition: background-image 0.4s ease-in-out;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-    cursor: pointer;
+.inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  gap: 28px;
+  justify-items: center;
 }
 
-.name {
-    margin-top: 20px;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #333;
+/* Collage area */
+.collage {
+  position: relative;
+  width: min(860px, 92vw);
+  height: clamp(220px, 30vw, 320px);
+  padding: 36px 0;
+}
+
+/* Foreground name cutout */
+.nameCutout {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-0.5deg);
+  width: min(700px, 70vw);
+  max-height: none;
+  object-fit: contain;
+  z-index: 3;
+
+  /* paper depth */
+  filter:
+    drop-shadow(0 6px 14px rgba(0, 0, 0, 0.18))
+    drop-shadow(0 18px 40px rgba(0, 0, 0, 0.10));
+}
+
+/* Square cutout behind */
+.square {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(150px, 20vw, 230px);
+  height: clamp(150px, 20vw, 230px);
+  transform: translate(-50%, -50%) translate(-220px, -40px) rotate(-6deg);
+  border-radius: 0px;
+  overflow: hidden;
+  z-index: 1;
+
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
+}
+
+.square img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Clover cutout behind */
+.clover {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(150px, 23vw, 200px);
+  height: clamp(150px, 23vw, 200px);
+  transform: translate(-50%, -50%) translate(230px, 40px) rotate(8deg);
+  overflow: hidden;
+  z-index: 2;
+
+  filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.12));
+
+  -webkit-mask-image: url("/clover-mask.svg");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-image: url("/clover-mask.svg");
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}
+
+.clover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Text under collage */
+.text {
+  max-width: 720px;
+  display: grid;
+  gap: 12px;
+  color: #2754f5;
+}
+
+.kicker {
+  margin: 0;
+  font-size: 1rem;
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.blurb {
+  margin: 0;
+  font-size: 0.95rem;
+  font-family: "EB Garamond", serif;
+  line-height: 1.65;
+}
+
+.ctaRow {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primaryBtn {
+  background: #78a2d2;
+  color: #f8efda;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.secondaryBtn {
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: #78a2d2;
+  color: #f8efda;
+}
+
+.primaryBtn:hover,
+.secondaryBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.14);
+}
+
+/* Responsive: reduce offsets on small screens so nothing goes off-canvas */
+@media (max-width: 520px) {
+  .square {
+    transform: translate(-50%, -50%) translate(-150px, -35px) rotate(-6deg);
+  }
+  .clover {
+    transform: translate(-50%, -50%) translate(160px, 35px) rotate(8deg);
+  }
 }

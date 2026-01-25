@@ -1,19 +1,19 @@
-import Navbar from "../src/components/Navbar/Navbar";
-import Hero from "../src/components/Hero/Hero";
-import AboutBox from "../src/components/AboutBox/AboutBox";
+import Navbar from "./components/Navbar/Navbar";
+import Hero from "./components/Hero/Hero";
+import AboutMe from "./components/AboutMe/AboutMe";
+import Projects from "./components/Projects/Projects";
+import DesignSection from "./components/DesignSection/DesignSection";
+import Footer from "./components/Footer/Footer";
 import "./App.css";
-import Projects from "../src/components/Projects/Projects";
-import DesignSection from "../src/components/DesignSection/DesignSection";
-import Footer from "../src/components/Footer/Footer";
 
 const App: React.FC = () => {
   return (
     <>
       <Navbar />
       <Hero />
-      <AboutBox />
       <Projects />
       <DesignSection />
+      <AboutMe />
       <Footer />
     </>
   )
