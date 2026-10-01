@@ -1,0 +1,35 @@
+{
+  "title": "Okemos Woof Pack",
+  "subtitle": "Merchandise \u00b7 Dog portraits",
+  "description": "Merchandise for Okemos Woof Pack with a personalized hand-drawn portrait for each dog.",
+  "tools": [
+    "Procreate",
+    "Canva"
+  ],
+  "items": {
+    "01-phoebe.png": {
+      "title": "Phoebe",
+      "description": "Hand-drawn line portrait of Phoebe."
+    },
+    "02-sadie.png": {
+      "title": "Sadie",
+      "description": "Hand-drawn line portrait of Sadie."
+    },
+    "03-bolt.png": {
+      "title": "Bolt",
+      "description": "Hand-drawn line portrait of Bolt."
+    },
+    "04-chip.png": {
+      "title": "Chip",
+      "description": "Hand-drawn line portrait of Chip."
+    },
+    "05-willow.png": {
+      "title": "Willow",
+      "description": "Hand-drawn line portrait of Willow."
+    },
+    "06-cece.png": {
+      "title": "Cece",
+      "description": "Hand-drawn line portrait of Cece."
+    }
+  }
+}

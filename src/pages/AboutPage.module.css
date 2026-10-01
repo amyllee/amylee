@@ -1,0 +1,152 @@
+.about {
+  width: 100%;
+  padding: 72px 20px 96px;
+}
+
+.inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* image | text */
+  gap: 56px;
+  align-items: center;
+}
+
+/* Left image */
+.imageWrap img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  display: block;
+}
+
+/* Right column */
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.titleImg {
+  width: min(260px, 60vw);
+  height: auto;
+  margin-bottom: 4px;
+  filter:
+    drop-shadow(0 6px 14px rgba(0, 0, 0, 0.12))
+    drop-shadow(0 14px 30px rgba(0, 0, 0, 0.08));
+}
+
+.text p {
+  margin: 0 0 14px;
+  font-size: 1.12rem;
+  line-height: 1.65;
+  color: var(--blue);
+}
+
+/* Contact card */
+.contactCard {
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: var(--cream-soft);
+  border: 1px solid rgba(120, 162, 210, 0.35);
+}
+.contactCard p { margin: 0 0 6px; }
+
+.email {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--sky);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.email:hover { color: var(--blue); border-color: var(--blue); }
+
+.contactLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px 7px 8px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.contactLink img { width: 22px; height: 22px; object-fit: contain; }
+.contactLink:hover { border-color: var(--sky); transform: translateY(-1px); }
+
+@media (max-width: 720px) {
+  .inner { grid-template-columns: 1fr; gap: 32px; }
+  .imageWrap { max-width: 420px; margin: 0 auto; }
+  .right { align-items: center; text-align: center; }
+  .contactLinks { justify-content: center; }
+  .contactCard { width: 100%; text-align: center; }
+}
+
+/* ── Photo frame wall (salon-style hanging) ── */
+.wall {
+  max-width: 980px;
+  margin: 72px auto 0;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;   /* frames "sit" on the same line */
+  gap: 28px 20px;
+}
+
+.frame {
+  position: relative;
+  margin: 0;
+  height: clamp(70px, 14vw, 185px);
+}
+
+/* slight tilt so they feel hung by hand */
+.frame:nth-child(odd) { transform: rotate(-2deg); }
+.frame:nth-child(even) { transform: rotate(1.5deg); }
+
+.frame img {
+  height: 100%;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.14));
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
+}
+
+.frame:hover img {
+  transform: translateY(-6px) scale(1.04);
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.2));
+}
+
+.frameTag {
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  transform: translate(-50%, 6px);
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 2;
+}
+.frame:hover .frameTag { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 560px) {
+  .wall { flex-wrap: wrap; margin-top: 48px; gap: 18px 12px; }
+  .frame { height: 26vw; }
+}

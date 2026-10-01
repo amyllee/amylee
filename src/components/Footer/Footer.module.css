@@ -20,8 +20,11 @@
     margin: 0 0 10px 0;
     font-size: 1.2rem;
     color: #f8efda;
+}
+
+.contact p a {
+    color: #f8efda;
     text-decoration: underline;
-    cursor: pointer;
 }
 
 .socials {

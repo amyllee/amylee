@@ -1,0 +1,35 @@
+{
+  "title": "Selected Work",
+  "subtitle": "Posters \u00b7 Postcards \u00b7 Logos",
+  "description": "Standalone pieces from competitions, study abroad, and clubs.",
+  "items": {
+    "01-national-parks-poster.jpg": {
+      "title": "BTAA Data Visualization",
+      "description": "Poster visualizing the top 20 most visited U.S. National Parks. Selected to represent U-M as the student representative in the 2025 BTAA Data Visualization Challenge.",
+      "tools": [
+        "Tableau",
+        "Illustrator"
+      ],
+      "fit": "contain",
+      "background": "#f3efe1"
+    },
+    "02-coex-aquarium-postcard.jpg": {
+      "title": "Co-ex Aquarium Postcard",
+      "description": "One of eight designs for a postcard series created during my study abroad at Yonsei International Summer School.",
+      "tools": [
+        "Illustrator",
+        "Photoshop"
+      ]
+    },
+    "03-solar-racing-logo.png": {
+      "title": "Okemos Solar Racing Club Logo",
+      "description": "Logo for the Okemos Solar Racing Club, featured on the solar car and the organization's website.",
+      "tools": [
+        "Illustrator",
+        "Procreate"
+      ],
+      "fit": "contain",
+      "background": "#ffffff"
+    }
+  }
+}

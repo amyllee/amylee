@@ -1,0 +1,43 @@
+{
+  "title": "Zeta Pi",
+  "subtitle": "Head of Marketing \u00b7 Winter 2026 Rush",
+  "description": "Rush T-shirt and the full set of promotional materials for Zeta Pi, the professional technology fraternity at U-M.",
+  "tools": [
+    "Illustrator",
+    "Canva",
+    "Procreate"
+  ],
+  "items": {
+    "01-tshirt-front.png": {
+      "title": "Rush T-shirt \u2014 front",
+      "description": "Minimal serif wordmark for the front of the chapter's rush shirt."
+    },
+    "02-tshirt-back.png": {
+      "title": "Rush T-shirt \u2014 back",
+      "description": "Back print pairing the Zeta Pi wordmark with a hand-drawn pile of retro computers."
+    },
+    "03-computer-illustration.png": {
+      "title": "Computer pile illustration",
+      "description": "The line illustration behind the T-shirt design, drawn by hand in Procreate.",
+      "tools": [
+        "Procreate"
+      ]
+    },
+    "04-rush-poster.png": {
+      "title": "Rush poster",
+      "description": "Wii Sports\u2013inspired recruitment poster introducing the fraternity's pillars: career development, socials, academic support, and mentorship."
+    },
+    "05-rush-timeline.png": {
+      "title": "Rush timeline",
+      "description": "Winter 2026 rush timeline graphic in a playful, game-inspired style."
+    },
+    "06-info-sessions.png": {
+      "title": "Info session schedule",
+      "description": "Event schedule for info sessions, the hot cocoa meet & greet, the DEI panel, and the application deadline."
+    },
+    "07-meet-the-eboard.png": {
+      "title": "Meet the E-board",
+      "description": "Wii-menu style graphic introducing the executive board."
+    }
+  }
+}

@@ -1,116 +1,345 @@
 .hero {
+  --mx: 0;
+  --my: 0;
+  --px: 50%;
+  --py: 40%;
+ 
+  /* Riso palette */
+  --ink-blue: #8fb5ea;
+  --ink-sky: #b9d6f2;
+  --ink-pink: #f5c3d0;
+  --ink-sage: #c6dc9a;
+  --ink-butter: #f5e3a0;
+  --ink-orange: #f7b48c;
+  --paper: #ffffff;
+ 
+  /* Grain texture (tiny SVG noise tile) */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.12  0 0 0 0 0.2  0 0 0 1.6 -0.55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23g%29'/%3E%3C/svg%3E");
+  /* Speckle mask: punches tiny holes in the color so it looks stippled like riso ink */
+  --speck: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.6 0 0 0 -0.55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23s%29'/%3E%3C/svg%3E");
+ 
+  position: relative;
+  isolation: isolate;          /* keeps the blend modes inside the hero */
+  overflow: clip;              /* blobs can drift past the edges without scrollbars */
   width: 100%;
-  padding: 140px 16px 40px;
+  padding: 80px 16px 88px;
   text-align: center;
+  background: var(--paper);
+  cursor: crosshair;           /* CHANGE */
 }
+ 
+/* ═════════ 1. RISOGRAPH BACKGROUND ═════════ */
+ 
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+ 
+/* Color Blobs */
+.inks {
+  position: absolute;
+  left: 50%;
+  top: 40%;                          /* vertical center of the color (name sits ~here) */
+  width: min(1320px, 96vw);          /* ← how wide the color spreads */
+  height: 96%;                       /* ← how tall the color spreads */
+  transform: translate(-50%, -50%);
+  -webkit-mask-image: var(--speck), radial-gradient(closest-side, #000 68%, transparent 100%);
+  mask-image: var(--speck), radial-gradient(closest-side, #000 68%, transparent 100%);
+  -webkit-mask-size: 180px, 100% 100%;
+  mask-size: 180px, 100% 100%;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+  -webkit-mask-composite: source-in; /* Safari/older Chrome: keep only where BOTH masks show */
+  mask-composite: intersect;
+}
+ 
+.blobWrap {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(calc(var(--mx) * var(--depth) * -1), calc(var(--my) * var(--depth) * -0.7), 0);
+}
+.depth1 { --depth: 18px; }
+.depth2 { --depth: 38px; }
+.depth3 { --depth: 60px; }
+ 
+.blob {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--c) 0%, var(--c) 45%, transparent 100%);
+  opacity: 0.9;
+  animation: drift var(--t, 22s) ease-in-out infinite alternate;
+}
+ 
+/* Position, size, color, and drift speed of each cloud */
+.blobBlue   { --c: var(--ink-blue);   width: 36%; left: 34%; top: 20%;  --t: 19s; animation-delay: -6s; opacity: 0.7; }
+.blobPink   { --c: var(--ink-pink);   width: 70%; left: 2%;  top: 10%; --t: 24s; }
+.blobSage   { --c: var(--ink-sage);   width: 26%; left: 12%; top: 50%; --t: 17s; animation-delay: -9s; opacity: 0.75; }
+.blobButter { --c: var(--ink-butter); width: 40%; left: 56%; top: 34%; --t: 27s; animation-delay: -12s; }
+.blobSky    { --c: var(--ink-sky);    width: 46%; left: 27%; top: -10%; --t: 30s; animation-delay: -15s; }
 
+/* drift distance is a % of each blob's own size, so small blobs move less */
+@keyframes drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(9%, -7%) scale(1.08); }
+  100% { transform: translate(-7%, 5%) scale(0.95); }
+}
+ 
+/* 3. Cursor light */
+.light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(260px circle at var(--px) var(--py), rgba(255, 255, 255, 0.75), transparent 70%);
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.lit .light { opacity: 1; }
+ 
+/* Grain texture */
+.grain {
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  background-size: 200px;
+  mix-blend-mode: multiply;
+  opacity: 0.32;               /* control grain */
+  -webkit-mask-image: radial-gradient(ellipse min(660px, 48vw) 48% at 50% 40%, #000 40%, transparent 85%);
+  mask-image: radial-gradient(ellipse min(660px, 48vw) 48% at 50% 40%, #000 40%, transparent 85%);
+}
+ 
+/* White wash behind the text + a fade into the white section below */
+.veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 46% 30% at 50% 74%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 100%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0) 78%, #ffffff 100%);
+}
+ 
+/* ═════════ 4. STICKERS ═════════ */
+ 
+.stickers {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+ 
+.sticker {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;     /* center it on the click */
+  mix-blend-mode: multiply;    /* overlapping stickers mix like ink */
+  animation: stickerLife 2.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.sticker svg { display: block; }
+ 
+@keyframes stickerLife {
+  0%   { transform: scale(0) rotate(calc(var(--rot) - 40deg)); opacity: 0; }
+  12%  { transform: scale(1.15) rotate(var(--rot)); opacity: 1; }
+  22%  { transform: scale(1) rotate(var(--rot)); }
+  70%  { opacity: 1; }
+  100% { transform: scale(0.9) translateY(-14px) rotate(var(--rot)); opacity: 0; }
+}
+ 
+/* ═════════ 2. 3D PAPER COLLAGE ═════════ */
+ 
 .inner {
+  position: relative;
+  z-index: 2;
   max-width: 980px;
   margin: 0 auto;
   display: grid;
   gap: 28px;
   justify-items: center;
 }
+ 
 
-/* Collage area */
-.collage {
+.stage {
   position: relative;
   width: min(860px, 92vw);
   height: clamp(220px, 30vw, 320px);
-  padding: 36px 0;
+  perspective: 1000px;
 }
 
-/* Foreground name cutout */
-.nameCutout {
+.tilt {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(var(--my) * -8deg)) rotateY(calc(var(--mx) * 10deg));
+}
+
+ 
+/* Riso-printed paper shapes */
+.paper {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) rotate(-0.5deg);
-  width: min(700px, 70vw);
-  max-height: none;
-  object-fit: contain;
-  z-index: 3;
-
-  /* paper depth */
-  filter:
-    drop-shadow(0 6px 14px rgba(0, 0, 0, 0.18))
-    drop-shadow(0 18px 40px rgba(0, 0, 0, 0.10));
 }
-
-/* Square cutout behind */
+ 
 .square {
-  position: absolute;
-  left: 50%;
-  top: 50%;
   width: clamp(150px, 20vw, 230px);
-  height: clamp(150px, 20vw, 230px);
-  transform: translate(-50%, -50%) translate(-220px, -40px) rotate(-6deg);
-  border-radius: 0px;
-  overflow: hidden;
-  z-index: 1;
-
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) translate(-270px, -34px) translateZ(-60px) rotate(-6deg);
+  background:
+    var(--grain),
+    radial-gradient(circle at 28% 30%, var(--ink-pink), transparent 62%),
+    radial-gradient(circle at 80% 85%, var(--ink-butter), transparent 55%),
+    linear-gradient(140deg, var(--ink-blue), var(--ink-sky));
+  background-size: 200px, auto, auto, auto;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.1);
 }
-
-.square img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Clover cutout behind */
+ 
 .clover {
+  width: clamp(150px, 23vw, 200px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) translate(285px, 46px) translateZ(-40px) rotate(8deg);
+  filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.12));
+}
+.clover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    var(--grain),
+    radial-gradient(circle at 70% 25%, var(--ink-orange), transparent 55%),
+    radial-gradient(circle at 25% 75%, var(--ink-blue), transparent 60%),
+    linear-gradient(200deg, var(--ink-sage), var(--ink-butter));
+  background-size: 200px, auto, auto, auto;
+  -webkit-mask: url("../../assets/site/clover-mask.svg") center / 100% 100% no-repeat;
+  mask: url("../../assets/site/clover-mask.svg") center / 100% 100% no-repeat;
+}
+ 
+.nameCutout,
+.nameShadow {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: clamp(150px, 23vw, 200px);
-  height: clamp(150px, 23vw, 200px);
-  transform: translate(-50%, -50%) translate(230px, 40px) rotate(8deg);
+  width: min(700px, 70vw);
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
+}
+ 
+.nameCutout {
+  transform: translate(-50%, -50%) translateZ(40px) rotate(-0.5deg);
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.12)); /* crisp paper edge */
+}
+ 
+/* Shadow = same image, turned dark + blurred, sliding OPPOSITE the mouse.
+   That opposite motion is what makes the name look raised off the page. */
+.nameShadow {
+  transform:
+    translate(-50%, -50%)
+    translate(calc(var(--mx) * -18px), calc(16px + var(--my) * -12px))
+    rotate(-0.5deg);
+  filter: brightness(0) blur(10px);
+  opacity: 0.2;
+}
+ 
+/* Paper "lift" when hovering near the name */
+.stage:hover .nameCutout {
+  transform: translate(-50%, -50%) translateZ(75px) rotate(-1.5deg) scale(1.02);
+}
+.stage:hover .nameShadow {
+  transform:
+    translate(-50%, -50%)
+    translate(calc(var(--mx) * -26px), calc(28px + var(--my) * -18px))
+    rotate(-1.5deg) scale(1.02);
+  opacity: 0.14;
+}
+ 
+/* Sparkles float furthest forward (big translateZ), so they move the most.
+   They also twinkle on their own. */
+.sparkle {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  color: var(--blue);
+  pointer-events: none;
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+.sparkle1 { left: 12%;  top: 8%;  transform: translateZ(110px); }
+.sparkle2 { right: 16%; top: 78%; width: 20px; height: 20px; color: #e889a5; transform: translateZ(90px); animation-delay: -1.1s; }
+.sparkle3 { right: 7%;  top: 14%; width: 16px; height: 16px; transform: translateZ(130px); animation-delay: -2.2s; }
+ 
+/* uses the separate "scale"/"rotate" properties so it doesn't overwrite translateZ */
+@keyframes twinkle {
+  0%, 100% { scale: 1;    rotate: 0deg; }
+  50%      { scale: 0.72; rotate: 25deg; }
+}
+ 
+/* hidden heading for screen readers / Google (the visible name is an image) */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
   overflow: hidden;
-  z-index: 2;
-
-  filter: drop-shadow(0 16px 34px rgba(0, 0, 0, 0.12));
-
-  -webkit-mask-image: url("/clover-mask.svg");
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%;
-  mask-image: url("/clover-mask.svg");
-  mask-repeat: no-repeat;
-  mask-size: 100% 100%;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
-
-.clover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Text under collage */
+ 
+/* ═════════ TEXT + BUTTONS (same as before) ═════════ */
+ 
 .text {
   max-width: 720px;
   display: grid;
   gap: 12px;
   color: #2754f5;
+  cursor: auto;
 }
-
+ 
 .kicker {
   margin: 0;
-  font-size: 1rem;
-  font-family: "IBM Plex Mono", monospace;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.14em;
   opacity: 0.75;
 }
 
-.blurb {
-  margin: 0;
-  font-size: 0.95rem;
-  font-family: "EB Garamond", serif;
-  line-height: 1.65;
+/* Typing effect */
+.untyped { visibility: hidden; }   /* letters not typed yet: hold their space */
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin: 0 1px 0 -0.1em;
+  vertical-align: -0.15em;
+  background: currentColor;
+  animation: caretBlink 1s steps(1) infinite;
 }
 
+@keyframes caretBlink {
+  50% { opacity: 0; }
+}
+
+/* after typing finishes: blink twice, then stay hidden */
+.caretDone {
+  opacity: 0;
+  animation: caretOut 2s steps(1) forwards;
+}
+
+@keyframes caretOut {
+  0%   { opacity: 1; }
+  25%  { opacity: 0; }
+  50%  { opacity: 1; }
+  75%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+ 
+.blurb {
+  margin: 0;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  line-height: 1.7;
+}
+ 
 .ctaRow {
   display: flex;
   gap: 12px;
@@ -118,7 +347,7 @@
   flex-wrap: wrap;
   margin-top: 8px;
 }
-
+ 
 .primaryBtn,
 .secondaryBtn {
   display: inline-flex;
@@ -130,31 +359,36 @@
   font-size: 1rem;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-
+ 
 .primaryBtn {
   background: #78a2d2;
   color: #f8efda;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
-
+ 
 .secondaryBtn {
   border: 1px solid rgba(0, 0, 0, 0.18);
   background: #78a2d2;
   color: #f8efda;
 }
-
+ 
 .primaryBtn:hover,
 .secondaryBtn:hover {
   transform: translateY(-1px);
   box-shadow: 0 14px 26px rgba(0, 0, 0, 0.14);
 }
-
-/* Responsive: reduce offsets on small screens so nothing goes off-canvas */
+ 
+/* ═════════ SMALL SCREENS ═════════ */
 @media (max-width: 520px) {
+  .hero { padding: 56px 16px 64px; }
   .square {
-    transform: translate(-50%, -50%) translate(-150px, -35px) rotate(-6deg);
+    width: 120px;
+    transform: translate(-50%, -50%) translate(-105px, -30px) translateZ(-60px) rotate(-6deg);
   }
   .clover {
-    transform: translate(-50%, -50%) translate(160px, 35px) rotate(8deg);
+    width: 115px;
+    transform: translate(-50%, -50%) translate(110px, 30px) translateZ(-40px) rotate(8deg);
   }
+  .nameCutout, .nameShadow { width: 86vw; }
+  .inks { width: 150vw; top: 36%; }
 }
