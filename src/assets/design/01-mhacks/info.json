@@ -1,0 +1,58 @@
+{
+  "title": "MHacks",
+  "subtitle": "Design Team \u00b7 2026",
+  "description": "Materials produced while on the design team, such as social media graphics, checks, badges, tote bags, and stickers",
+  "tools": [
+    "Figma",
+    "Procreate"
+  ],
+  "items": {
+    "01-earlyapps": {
+      "title": "",
+      "description": ""
+    },
+    "02-envision.png": {
+      "title": "",
+      "description": ""
+    },
+    "03-thrive.png": {
+      "title": "",
+      "description": "",
+      "tools": [
+        "Procreate"
+      ]
+    },
+    "04-tracks.png": {
+      "title": "",
+      "description": ""
+    },
+    "05-sponsor.png": {
+      "title": "",
+      "description": ""
+    },
+    "06-check.png": {
+      "title": "",
+      "description": ""
+    },
+    "07-badges.png": {
+      "title": "",
+      "description": ""
+    },
+    "08-figma.png": {
+      "title": "",
+      "description": ""
+    },
+    "09-totes.png": {
+      "title": "",
+      "description": ""
+    },
+    "10-tote.png": {
+      "title": "",
+      "description": ""
+    },
+    "11-stickers.png": {
+      "title": "",
+      "description": ""
+    }
+  }
+}

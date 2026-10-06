@@ -3,13 +3,6 @@ import styles from "./DesignPage.module.css";
 import designTitle from "../assets/site/designTitle.png";
 import { DESIGN_COLLECTIONS } from "../data/design";
 import Lightbox from "../components/Lightbox/Lightbox";
-import bunnyYellow from "../assets/stickers/bunny3.png";
-import starGreen from "../assets/stickers/star1.png";
-import bunnyPink from "../assets/stickers/bunny2.png";
-import starPurple from "../assets/stickers/star2.png";
-import bunnyBlue from "../assets/stickers/bunny1.png";
-
-const DIVIDER_STICKERS = [bunnyYellow, starGreen, bunnyPink, starPurple, bunnyBlue];
 
 type Open = { c: number; i: number } | null;
 

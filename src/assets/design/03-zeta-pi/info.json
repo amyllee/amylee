@@ -1,7 +1,7 @@
 {
   "title": "Zeta Pi",
   "subtitle": "Head of Marketing \u00b7 Winter 2026 Rush",
-  "description": "Rush T-shirt and the full set of promotional materials for Zeta Pi, the professional technology fraternity at U-M.",
+  "description": "Full sets of promotional materials for Zeta Pi, a professional technology fraternity at U-M.",
   "tools": [
     "Illustrator",
     "Canva",
@@ -10,7 +10,7 @@
   "items": {
     "01-tshirt-front.png": {
       "title": "Rush T-shirt \u2014 front",
-      "description": "Minimal serif wordmark for the front of the chapter's rush shirt."
+      "description": "Minimal serif wordmark for the front of the 2026 rush shirt."
     },
     "02-tshirt-back.png": {
       "title": "Rush T-shirt \u2014 back",
@@ -38,6 +38,22 @@
     "07-meet-the-eboard.png": {
       "title": "Meet the E-board",
       "description": "Wii-menu style graphic introducing the executive board."
+    },
+    "08-eta.png": {
+      "title": "Meet the Eta Class",
+      "description": "Apple UI-inspired intro post for Eta Class."
+    },
+    "09-retreat.png": {
+      "title": "Retreat Recap W26",
+      "description": "Apple UI-inspired retreat recap."
+    },
+    "10-semesterRecap.png": {
+      "title": "W26 Recap",
+      "description": "Recap post for Winter 2026."
+    },
+    "11-zprofile.png": {
+      "title": "ZProfile Logo",
+      "description": "Logo design for internal website."
     }
   }
 }

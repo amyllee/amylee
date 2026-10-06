@@ -1,0 +1,44 @@
+{
+  "title": "AP Art Portfolio",
+  "subtitle": "Selected portfolio works \u00b7 2024",
+  "description": "Pieces submitted for AP Art 2D, earning a 5",
+  "tools": [
+    "Illustrator",
+    "Photoshop",
+    "Procreate"
+  ],
+  "items": {
+    "01-fridge.png": {
+      "title": "",
+      "description": ""
+    },
+    "02-clovers.png": {
+      "title": "",
+      "description": ""
+    },
+    "03-deer.png": {
+      "title": "",
+      "description": ""
+    },
+    "04-charcoal.png": {
+      "title": "",
+      "description": ""
+    },
+    "05-window.png": {
+      "title": "",
+      "description": ""
+    },
+    "06-hands.png": {
+      "title": "",
+      "description": ""
+    },
+    "07-girls.png": {
+      "title": "",
+      "description": ""
+    },
+    "08-self.png": {
+      "title": "",
+      "description": ""
+    }
+  }
+}
