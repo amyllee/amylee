@@ -2,8 +2,10 @@
     background-color: #78a2d2;
     padding: 40px;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 28px;
 }
 
 .contact {
@@ -40,4 +42,22 @@
 
 .socialIcon:hover {
     transform: scale(1.1);
+}
+
+/* Visitor ticket on the right side of the footer */
+.ticketSpot {
+    margin-right: 40px;
+}
+
+@media (max-width: 640px) {
+    .footer {
+        padding: 32px 24px 40px;
+    }
+    .contact {
+        margin-left: 0;
+    }
+    .ticketSpot {
+        margin: 0 auto;
+        width: min(300px, 100%);
+    }
 }

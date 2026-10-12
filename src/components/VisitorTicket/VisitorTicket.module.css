@@ -1,0 +1,199 @@
+/* ───────── Visitor ticket stub (footer) ─────────
+   A riso-printed admission ticket: cream paper, blue ink, a pink ink layer
+   printed slightly off-register, grain on top, and a perforated stub that
+   starts to tear when you hover. */
+
+.wrap {
+  --paper: #fbf3df;
+  --ink: var(--blue, #2754f5);
+  --ink-pink: #f08aa8;
+  --notch: 8px;                 /* size of the half-circle cut-outs */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.12  0 0 0 0 0.2  0 0 0 1.6 -0.55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23g%29'/%3E%3C/svg%3E");
+
+  width: min(300px, 100%);
+  transform: rotate(-3deg);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.35s ease;
+  /* drop-shadow (not box-shadow) so the shadow follows the notched edges */
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.14)) drop-shadow(0 12px 20px rgba(0, 0, 0, 0.1));
+  user-select: none;
+}
+
+.wrap:hover {
+  transform: rotate(-1.5deg) translateY(-3px);
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.14)) drop-shadow(0 18px 28px rgba(0, 0, 0, 0.12));
+}
+
+.ticket {
+  display: flex;
+  align-items: stretch;
+}
+
+/* ── Main part ── */
+.main {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: 12px 16px 10px 18px;
+  background: var(--paper);
+  border-radius: 6px 0 0 6px;
+  color: var(--ink);
+  /* half-circle notches on the right corners, where the perforation meets the edge */
+  -webkit-mask:
+    radial-gradient(circle at 100% 0, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) top / 100% 51% no-repeat,
+    radial-gradient(circle at 100% 100%, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) bottom / 100% 51% no-repeat;
+  mask:
+    radial-gradient(circle at 100% 0, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) top / 100% 51% no-repeat,
+    radial-gradient(circle at 100% 100%, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) bottom / 100% 51% no-repeat;
+}
+
+/* thin printed frame line inside the ticket */
+.main::before {
+  content: "";
+  position: absolute;
+  inset: 5px 6px 5px 5px;
+  border: 1px solid color-mix(in srgb, var(--ink) 35%, transparent);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+/* grain over everything (paper and ink) so it looks printed */
+.main::after,
+.stub::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  background-size: 200px;
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.topRow,
+.bottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.6rem;
+  font-weight: 500;
+}
+
+.topRow {
+  padding-bottom: 4px;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+.bottomRow {
+  margin-top: 4px;
+  letter-spacing: 0.1em;
+  font-size: 0.55rem;
+  opacity: 0.85;
+}
+
+.caption {
+  margin: 6px 0 -2px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.1;
+}
+
+/* The big number, with a pink ink layer printed a hair off-register */
+.number {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.95rem;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  font-variant-numeric: lining-nums tabular-nums;
+  white-space: nowrap;
+}
+
+.number::before {
+  content: attr(data-ink);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  color: var(--ink-pink);
+  transform: translate(2px, 1.5px);
+  mix-blend-mode: multiply;
+}
+
+.numberLoading {
+  opacity: 0.45;
+  animation: ticketPulse 1.2s ease-in-out infinite alternate;
+}
+
+.numberWelcome {
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* stamped in when the real number arrives */
+.numberIn {
+  animation: ticketStamp 0.45s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+}
+
+/* ── Stub (tears on hover) ── */
+.stub {
+  position: relative;
+  flex: 0 0 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--paper);
+  border-radius: 0 6px 6px 0;
+  color: var(--ink);
+  /* perforation */
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--ink) 55%, transparent) 1.2px, transparent 1.6px);
+  background-size: 4px 7px;
+  background-repeat: repeat-y;
+  background-position: 0 center;
+  transform-origin: 0% 100%;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  -webkit-mask:
+    radial-gradient(circle at 0 0, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) top / 100% 51% no-repeat,
+    radial-gradient(circle at 0 100%, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) bottom / 100% 51% no-repeat;
+  mask:
+    radial-gradient(circle at 0 0, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) top / 100% 51% no-repeat,
+    radial-gradient(circle at 0 100%, #0000 var(--notch), #000 calc(var(--notch) + 0.5px)) bottom / 100% 51% no-repeat;
+}
+
+.wrap:hover .stub {
+  transform: translate(3px, -1px) rotate(7deg);
+}
+
+.stubText {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.55rem;
+  font-weight: 500;
+}
+
+.stubStar {
+  font-size: 0.95rem;
+  line-height: 1;
+  color: var(--ink-pink);
+  text-shadow: -1.5px -1px 0 color-mix(in srgb, var(--ink) 70%, transparent);
+}
+
+@keyframes ticketPulse {
+  to { opacity: 0.2; }
+}
+
+@keyframes ticketStamp {
+  from { opacity: 0; transform: scale(1.25) rotate(-4deg); }
+  to   { opacity: 1; transform: none; }
+}

@@ -3,6 +3,7 @@ import styles from "./Footer.module.css";
 import linkedinIcon from "../../assets/site/linkedin.png";
 import githubIcon from "../../assets/site/github.png";
 import { CONTACT } from "../../data/contact";
+import VisitorTicket from "../VisitorTicket/VisitorTicket";
 
 const Footer: React.FC = () => {
   return (
@@ -20,6 +21,9 @@ const Footer: React.FC = () => {
             <img src={githubIcon} alt="GitHub" className={styles.socialIcon} />
           </a>
         </div>
+      </div>
+      <div className={styles.ticketSpot}>
+        <VisitorTicket />
       </div>
     </footer>
   );

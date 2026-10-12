@@ -294,10 +294,100 @@
 .entryBullets li::marker { color: var(--sky); }
 
 /* ───────── Mobile ───────── */
-.explore {
-  position: sticky;
-  top: var(--nav-height);
-  z-index: 0;
-  padding: 72px 20px 100px;
-  background: linear-gradient(180deg, #ffffff 0%, var(--cream-soft) 100%);
+@media (max-width: 760px) {
+  .explore {
+    padding: 56px 16px 90px;
+  }
+
+  .exploreGrid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    max-width: 440px;
+  }
+
+  .exploreCard {
+    padding: 22px 18px 20px;
+  }
+
+  .fan {
+    --fan-size: clamp(84px, 27vw, 116px);       /* ← photo size on phones */
+    --fan-spread: calc(var(--fan-size) * 0.66); /* ← how far the side photos fan out */
+    height: calc(var(--fan-size) + 36px);
+  }
+
+  .fan0, .fan1, .fan2 {
+    width: var(--fan-size);
+    height: var(--fan-size);
+    padding: 5px;
+  }
+
+  .fan0 { transform: translate(-50%, -50%) translate(calc(var(--fan-spread) * -1), 8px) rotate(-8deg); }
+  .fan1 { transform: translate(-50%, -50%) translate(0, -6px) rotate(1deg); }
+  .fan2 { transform: translate(-50%, -50%) translate(var(--fan-spread), 10px) rotate(7deg); }
+
+  .exploreCard:hover .fan0 { transform: translate(-50%, -50%) translate(calc(var(--fan-spread) * -1.12), 10px) rotate(-11deg); }
+  .exploreCard:hover .fan1 { transform: translate(-50%, -50%) translate(0, -10px) rotate(-1deg) scale(1.03); }
+  .exploreCard:hover .fan2 { transform: translate(-50%, -50%) translate(calc(var(--fan-spread) * 1.12), 12px) rotate(10deg); }
+
+  .exploreTitle {
+    height: 52px;
+  }
+
+  .exploreBlurb {
+    font-size: 0.98rem;
+  }
+
+  .exploreFoot {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+}
+
+/* Education × Experience: label goes above the entries, and dates/locations wrap */
+@media (max-width: 640px) {
+  .resume {
+    margin-top: -40px;
+    padding: 60px 18px 56px;
+    border-radius: 28px 28px 0 0;
+  }
+
+  .resumeHeader {
+    margin-bottom: 24px;
+  }
+
+  .resumeBlock {
+    grid-template-columns: 1fr;   /* label on its own row instead of a 150px column */
+    gap: 14px;
+    padding: 22px 0;
+  }
+
+  .blockLabel {
+    margin: 0;
+  }
+
+  .entry + .entry {
+    padding-top: 20px;
+  }
+
+  .entryHead,
+  .entryOrg {
+    flex-wrap: wrap;              /* dates / location drop below when there's no room */
+    gap: 2px 12px;
+  }
+
+  .entryTitle {
+    font-size: 1.14rem;
+  }
+
+  .entryOrg {
+    font-size: 1rem;
+  }
+
+  .entryLoc {
+    align-self: auto;
+  }
+
+  .entryBullets {
+    font-size: 0.98rem;
+  }
 }
