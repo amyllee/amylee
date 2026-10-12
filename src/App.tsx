@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import DesignPage from "./pages/DesignPage";
 import AboutPage from "./pages/AboutPage";
+import { trackPageview } from "./lib/analytics";
 
 /** Every page shares the same header + footer. */
 const Layout: React.FC = () => {
@@ -14,6 +15,11 @@ const Layout: React.FC = () => {
   // Start each page at the top when you switch pages.
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, [pathname]);
+
+  // Count a visit in GoatCounter each time the page changes
+  useEffect(() => {
+    trackPageview(pathname);
   }, [pathname]);
 
   return (
